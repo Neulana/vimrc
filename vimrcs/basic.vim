@@ -50,7 +50,8 @@ nmap <leader>w :w!<cr>
 " :W sudo saves the file 
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
-
+" set line number
+set nu!
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -132,16 +133,17 @@ set foldcolumn=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
 syntax enable 
-
+colorscheme molokai
 " Enable 256 colors palette in Gnome Terminal
 if $COLORTERM == 'gnome-terminal'
     set t_Co=256
 endif
 
-try
-    colorscheme desert
-catch
-endtry
+" try
+"     colorscheme desert
+"     colorscheme molokai
+" catch
+" endtry
 
 set background=dark
 
@@ -294,9 +296,9 @@ fun! CleanExtraSpaces()
     call setreg('/', old_query)
 endfun
 
-if has("autocmd")
-    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
-endif
+" if has("autocmd")
+"     autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+" endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

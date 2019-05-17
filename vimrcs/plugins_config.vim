@@ -36,7 +36,7 @@ map <leader>f :MRU<CR>
 """"""""""""""""""""""""""""""
 let g:yankstack_yank_keys = ['y', 'd']
 
-nmap <c-p> <Plug>yankstack_substitute_older_paste
+nmap <c-p> <Plud>yankstack_substitute_older_paste
 nmap <c-n> <Plug>yankstack_substitute_newer_paste
 
 
@@ -45,7 +45,7 @@ nmap <c-n> <Plug>yankstack_substitute_newer_paste
 """"""""""""""""""""""""""""""
 let g:ctrlp_working_path_mode = 0
 
-let g:ctrlp_map = '<c-f>'
+let g:ctrlp_map = '<c-p>'
 map <leader>j :CtrlP<cr>
 map <c-b> :CtrlPBuffer<cr>
 
@@ -77,8 +77,10 @@ set grepprg=/bin/grep\ -nH
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:NERDTreeWinPos = "right"
-let NERDTreeShowHidden=0
+" autocmd VimEnter * NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeWinPos = "left"
+let NERDTreeShowHidden=1
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 let g:NERDTreeWinSize=35
 map <leader>nn :NERDTreeToggle<cr>
@@ -177,3 +179,11 @@ let g:ale_lint_on_enter = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:gitgutter_enabled=0
 nnoremap <silent> <leader>d :GitGutterToggle<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Ack.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
+let g:ackhighlight = 1
+let g:ack_autoclose = 1
